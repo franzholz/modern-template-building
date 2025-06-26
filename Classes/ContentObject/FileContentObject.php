@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Type\File\ImageInfo;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\AbstractContentObject;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
-use TYPO3\CMS\Frontend\Resource\FilePathSanitizer;
 
 /**
  * Contains FILE class object.
@@ -34,7 +33,6 @@ class FileContentObject extends AbstractContentObject
         $theValue = '';
         $file = isset($conf['file.']) ? $this->cObj->stdWrap($conf['file'], $conf['file.']) : $conf['file'];
         try {
-            $file = GeneralUtility::makeInstance(FilePathSanitizer::class)->sanitize($file, true);
             if (str_starts_with($file, 'EXT:')) {
                 $file = GeneralUtility::getFileAbsFileName($file);
             }
